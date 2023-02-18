@@ -15,3 +15,8 @@ The model can be fine-tuned using reinforcement learning to improve its accuracy
 
 # Conclusion
 This text classifier is an effective and flexible way to classify input text. By combining an LSTM layer and a GPT-2 XL model, the classifier can learn to classify a wide range of text inputs. Additionally, the model can be fine-tuned using reinforcement learning to improve its accuracy.
+
+# Disclaimer
+This code assumes that you have already prepared and tokenized your text data. If you have not done so, it is recommended that you clean and tokenize your data prior to using this code. Properly preprocessed text data can help improve the accuracy and effectiveness of natural language processing models.
+
+If you are not familiar with text processing or need guidance on how to preprocess your data, I have created a separate repository on my GitHub account that focuses specifically on text processing. You can refer to that repository to learn more about how to clean and tokenize your text data for use with machine learning models. Once you have preprocessed your text data, you can use this code to train and evaluate a GPT-2 and LSTM mashup model for your natural language processing needs.
