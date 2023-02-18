@@ -1,6 +1,7 @@
 import tensorflow as tf
 from transformers import TFGPT2LMHeadModel, GPT2Tokenizer
 from tensorflow.keras import layers
+from tensorflow.keras.callbacks import ModelCheckpoint
 import numpy as np
 import os
 import random
@@ -46,8 +47,14 @@ output_layer = layers.Dense(1, activation='sigmoid', name='output_layer')(concat
 # Define the model
 model = tf.keras.Model(inputs=[text_input, gpt2_input], outputs=output_layer)
 
-# Compile the model
+# Compile the model and add model checkpoint callback
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model_checkpoint_callback = ModelCheckpoint(
+    filepath=CHECKPOINT_FILE,
+    save_weights_only=True,
+    monitor='val_accuracy',
+    mode='max',
+    save_best_only=True)
 
 # Check if the model file exists, and if so, load the model from the file
 if os.path.exists(CHECKPOINT_FILE):
@@ -63,6 +70,15 @@ else:
     # Save the processed text data and labels
     np.save(TEXT_DATA_FILE, X_train)
     np.save(LABELS_FILE, y_train)
+
+# Train the model and save checkpoints at every epoch
+model.fit(
+    [X_train, gpt2_input], y_train, 
+    validation_data=([X_test, gpt2_input], y_test),
+    epochs=50,
+    batch_size=32,
+    callbacks=[model_checkpoint_callback]
+)
     
 # Define a function to query the model
 def predict(input_text, num_tokens=10):
