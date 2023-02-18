@@ -15,7 +15,7 @@ LABELS_FILE = os.path.join(MODEL_DIR, "labels.npy")
 CHECKPOINT_FILE = os.path.join(MODEL_DIR, "checkpoint.ckpt")
 LOG_FILE = os.path.join(MODEL_DIR, "training.log")
 
-# Load and preprocess the data, data needs to be pretokenized, if not skip to line 250.
+# Load and preprocess the data, which must be pretokenized
 with open('path/to/your/input/text/file.txt', 'r') as f:
     lines = f.readlines()
 text_data = [line.strip() for line in lines]
