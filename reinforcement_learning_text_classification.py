@@ -8,7 +8,7 @@ import random
 from autokeras import TextClassifier
 
 # Set up file paths
-MODEL_DIR = "e:\\__results\\gyndroid_model\\"
+MODEL_DIR = "path/to/your/model"
 TEXT_DATA_FILE = os.path.join(MODEL_DIR, "text_data.npy")
 GPT2_DATA_FILE = os.path.join(MODEL_DIR, "gpt2_data.npy")
 LABELS_FILE = os.path.join(MODEL_DIR, "labels.npy")
